@@ -10,6 +10,7 @@
 package com.droidlogic.app.tv;
 
 import android.content.Context;
+import android.hardware.hdmi.HdmiAudioSystemClient;
 import android.hardware.hdmi.HdmiControlManager;
 import android.hardware.hdmi.HdmiDeviceInfo;
 import android.hardware.hdmi.HdmiTvClient;
@@ -35,6 +36,7 @@ public class DroidLogicHdmiCecManager {
     private static Context mContext;
     private HdmiControlManager mHdmiControlManager;
     private HdmiTvClient mTvClient = null;
+    private HdmiAudioSystemClient mHdmiAudioSystemClient;
     private int mSelectDeviceId = -1;
     private int mSelectLogicAddr = -1;
     private int mSelectPhyAddr = -1;
@@ -123,7 +125,7 @@ public class DroidLogicHdmiCecManager {
                 if (type == DEV_TYPE_TV) {
                     mTvClient = mHdmiControlManager.getTvClient();
                 } else if (type == DEV_TYPE_AUDIO_SYSTEM) {
-                    mTvClient = mHdmiControlManager.getAudioSystemClient();
+                    mHdmiAudioSystemClient = mHdmiControlManager.getAudioSystemClient();
                 }
             }
         }
